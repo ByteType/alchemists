@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/alchemists/static/css/main.073c9b0a.css",
+    "main.js": "/alchemists/static/js/main.43fa0f8c.js",
+    "static/js/787.c75eca17.chunk.js": "/alchemists/static/js/787.c75eca17.chunk.js",
+    "static/media/logo.svg": "/alchemists/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/alchemists/index.html",
+    "main.073c9b0a.css.map": "/alchemists/static/css/main.073c9b0a.css.map",
+    "main.43fa0f8c.js.map": "/alchemists/static/js/main.43fa0f8c.js.map",
+    "787.c75eca17.chunk.js.map": "/alchemists/static/js/787.c75eca17.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.43fa0f8c.js"
+  ]
+}
