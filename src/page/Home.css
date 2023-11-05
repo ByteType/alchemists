@@ -1,0 +1,26 @@
+.home-container {
+  width: 100%;
+}
+
+.code-container,
+.form-container {
+  float: left;
+  width: 50%;
+}
+
+.form-container {
+  border-left: 1px solid black;
+}
+
+@media (max-width: 600px) {
+  .code-container,
+  .form-container {
+    float: none;
+    width: 100%;
+  }
+
+  .form-container {
+    border-left: none;
+    border-top: 1px solid black;
+  }
+}
