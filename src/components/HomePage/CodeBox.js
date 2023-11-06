@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./Codebox.css";
+import "./CodeBox.css";
 
 export default function CodeBox() {
   const itemsRef = useRef([]);
