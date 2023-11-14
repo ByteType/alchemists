@@ -1,10 +1,11 @@
 import Navbar from "../components/Navbar/Navbar";
+import Sidebar from "../components/UserPage/Sidebar";
 
 export default function User() {
   return (
     <>
       <Navbar />
-      <p>This is User page.</p>
+      <Sidebar />
     </>
   );
 }

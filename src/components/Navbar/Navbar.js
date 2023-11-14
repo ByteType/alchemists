@@ -22,7 +22,7 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link to="/alchemists/user">
+            <Link to="/alchemists/user/list">
               <AiOutlineUser
                 size={20}
                 style={{ color: "black", verticalAlign: "middle" }}
