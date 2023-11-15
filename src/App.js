@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Driver from "./page/Driver";
 import User from "./page/User";
 import Home from "./page/Home.js";
@@ -7,10 +7,10 @@ import LoginSignUp from "./page/LoginSignUp.js";
 import DeliveryParcel from "./page/DeliveryParcel.js";
 import ParcelList from "./page/ParcelList.js";
 
-function App() {
+function App({ RouterComponent }) {
   return (
     <div>
-      <BrowserRouter>
+      <RouterComponent>
         <Routes>
           <Route path="/alchemists" element={<Home />} />
           <Route path="/alchemists/user" element={<User />} />
@@ -22,7 +22,7 @@ function App() {
           />
           <Route path="/alchemists/user/list" element={<ParcelList />} />
         </Routes>
-      </BrowserRouter>
+      </RouterComponent>
     </div>
   );
 }

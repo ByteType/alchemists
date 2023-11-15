@@ -4,11 +4,7 @@ import App from "./App";
 import { MemoryRouter } from "react-router-dom";
 
 test("renders learn react link", () => {
-  render(
-    <MemoryRouter initialEntries={["/alchemists"]}>
-      <App />
-    </MemoryRouter>
-  );
+  render(<App RouterComponent={MemoryRouter} />);
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
 });
