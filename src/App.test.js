@@ -1,12 +1,13 @@
+import React from "react";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
-import { StaticRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
 
 test("renders learn react link", () => {
   render(
-    <StaticRouter location="/alchemists">
+    <MemoryRouter initialEntries={["/alchemists"]}>
       <App />
-    </StaticRouter>
+    </MemoryRouter>
   );
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
