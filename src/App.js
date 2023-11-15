@@ -1,11 +1,10 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Driver from "./page/Driver";
-import User from "./page/User";
-import Home from "./page/Home.js";
-import LoginSignUp from "./page/LoginSignUp.js";
-import DeliveryParcel from "./page/DeliveryParcel.js";
-import ParcelList from "./page/ParcelList.js";
+import User from "./pages/User";
+import Home from "./pages/Home.js";
+import LoginSignUp from "./pages/LoginSignUp.js";
+import DeliveryParcel from "./pages/DeliveryParcel.js";
+import ParcelList from "./pages/ParcelList.js";
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
       <Routes>
         <Route path="/alchemists" element={<Home />} />
         <Route path="/alchemists/user" element={<User />} />
-        <Route path="/alchemists/driver" element={<Driver />} />
         <Route path="/alchemists/login" element={<LoginSignUp />} />
         <Route path="/alchemists/user/delivery" element={<DeliveryParcel />} />
         <Route path="/alchemists/user/list" element={<ParcelList />} />
