@@ -5,7 +5,9 @@ import { MemoryRouter } from "react-router-dom";
 
 test("renders learn react link", () => {
   render(
-    <App RouterComponent={MemoryRouter} initialEntries={["/alchemists"]} />
+    <MemoryRouter initialEntries={["/alchemists"]}>
+      <App />
+    </MemoryRouter>
   );
   const linkElement = screen.getByText(/learn react/i);
   expect(linkElement).toBeInTheDocument();
