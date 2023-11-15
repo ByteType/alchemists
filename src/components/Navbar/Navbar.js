@@ -1,4 +1,4 @@
-import styles from "./Navbar.css";
+import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineBars, AiOutlineClose } from "react-icons/ai";
