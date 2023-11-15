@@ -2,7 +2,7 @@ import "./ParcelCard.css";
 import { useState } from "react";
 
 export default function ParcelCard() {
-  const [codeStatus, setCodeStatus] = useState(false);
+  const [codeStatus] = useState(false);
   return (
     <>
       <div className="card-container">

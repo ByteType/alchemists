@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./DeliveryForm.css";
 
 export default function DeliveryForm() {

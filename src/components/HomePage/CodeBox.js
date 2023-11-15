@@ -3,7 +3,7 @@ import "./CodeBox.css";
 
 export default function CodeBox() {
   const itemsRef = useRef([]);
-  const [userInput, setUserInput] = useState("");
+  const [, setUserInput] = useState("");
   const [action, setAction] = useState("Pick Up Parcel");
 
   const codeChangeHandler = (event) => {
