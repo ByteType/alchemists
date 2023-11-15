@@ -1,0 +1,8 @@
+.locker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+}
