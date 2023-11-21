@@ -38,7 +38,7 @@ export default function Form() {
         );
         if (response.ok) {
           const result = await response.json();
-          console.log(result);
+
           setMessage("Signup successful!");
         } else {
           setMessage("Signup failed");
@@ -65,6 +65,7 @@ export default function Form() {
         if (response.ok) {
           const result = await response.json();
           console.log(result);
+          console.log("response.headers =", response.headers.get("Set-Cookie"));
           setMessage("Login successful!");
         } else {
           setMessage("Login failed");

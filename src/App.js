@@ -5,6 +5,7 @@ import Home from "./pages/Home.js";
 import LoginSignUp from "./pages/LoginSignUp.js";
 import DeliveryParcel from "./pages/DeliveryParcel.js";
 import ParcelList from "./pages/ParcelList.js";
+import Driver from "./pages/Driver.js";
 
 function App() {
   return (
