@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/UserPage/Sidebar";
 import ParcelCard from "../components/UserPage/ParcelCard";
+
 import "./ParcelList.css";
 
 export default function ParcelList() {

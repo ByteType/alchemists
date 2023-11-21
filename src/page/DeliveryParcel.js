@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/UserPage/Sidebar";
 import DeliveryForm from "../components/UserPage/DeliveryForm";
+
 import "./DeliveryParcel.css";
 
 export default function DeliveryParcel() {

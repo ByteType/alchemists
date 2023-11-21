@@ -12,9 +12,12 @@ function App() {
     <div>
       <Routes>
         <Route path="/alchemists" element={<Home />} />
+
         <Route path="/alchemists/user" element={<User />} />
-        <Route path="/alchemists/driver" element={<Driver />} />
         <Route path="/alchemists/login" element={<LoginSignUp />} />
+
+        <Route path="/alchemists/driver" element={<Driver />} />
+
         <Route path="/alchemists/user/delivery" element={<DeliveryParcel />} />
         <Route path="/alchemists/user/list" element={<ParcelList />} />
       </Routes>

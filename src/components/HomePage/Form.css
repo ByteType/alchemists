@@ -30,6 +30,9 @@
   background: #252525;
   border-radius: 9px;
 }
+.message {
+  margin: auto;
+}
 
 .inputs {
   margin-top: 25px;
