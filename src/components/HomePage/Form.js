@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import {
   AiOutlineUser,
   AiOutlineMail,
@@ -6,10 +6,12 @@ import {
   AiOutlineHome,
 } from "react-icons/ai";
 import "./Form.css";
+import {useAuthDispatch} from "../../contexts/AuthContext";
 
 export default function Form() {
   const [action, setAction] = useState("Sign Up");
   const [message, setMessage] = useState("");
+  const dispatch = useAuthDispatch();
   const [userData, setUserData] = useState({
     username: "",
     email: "",
@@ -38,7 +40,11 @@ export default function Form() {
         );
         if (response.ok) {
           const result = await response.json();
-
+          dispatch({
+            type: 'login',
+            payload: result
+          });
+          console.log(result);
           setMessage("Signup successful!");
         } else {
           setMessage("Signup failed");
@@ -64,8 +70,11 @@ export default function Form() {
 
         if (response.ok) {
           const result = await response.json();
+          dispatch({
+            type: 'login',
+            payload: result
+          });
           console.log(result);
-          console.log("response.headers =", response.headers.get("Set-Cookie"));
           setMessage("Login successful!");
         } else {
           setMessage("Login failed");

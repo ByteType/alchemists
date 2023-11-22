@@ -6,23 +6,26 @@ import LoginSignUp from "./pages/LoginSignUp.js";
 import DeliveryParcel from "./pages/DeliveryParcel.js";
 import ParcelList from "./pages/ParcelList.js";
 import Driver from "./pages/Driver.js";
+import {AuthProvider} from "./contexts/AuthContext";
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/alchemists" element={<Home />} />
+    return (
+        <AuthProvider>
+          <div>
+            <Routes>
+              <Route path="/alchemists" element={<Home />} />
 
-        <Route path="/alchemists/user" element={<User />} />
-        <Route path="/alchemists/login" element={<LoginSignUp />} />
+              <Route path="/alchemists/user" element={<User />} />
+              <Route path="/alchemists/login" element={<LoginSignUp />} />
 
-        <Route path="/alchemists/driver" element={<Driver />} />
+              <Route path="/alchemists/driver" element={<Driver />} />
 
-        <Route path="/alchemists/user/delivery" element={<DeliveryParcel />} />
-        <Route path="/alchemists/user/list" element={<ParcelList />} />
-      </Routes>
-    </div>
-  );
+              <Route path="/alchemists/user/delivery" element={<DeliveryParcel />} />
+              <Route path="/alchemists/user/list" element={<ParcelList />} />
+            </Routes>
+          </div>
+        </AuthProvider>
+    );
 }
 
 export default App;
