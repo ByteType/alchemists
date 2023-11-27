@@ -1,0 +1,33 @@
+.detail-form {
+  width: 80%;
+}
+
+.info-title {
+  margin-bottom: 15px;
+}
+
+.form-row {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-right,
+.top-left {
+  display: inline-block;
+}
+
+@media (max-width: 880px) {
+  .top-right,
+  .top-left {
+    display: block;
+  }
+  .btn-box {
+    width: 50%;
+  }
+}

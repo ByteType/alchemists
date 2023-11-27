@@ -1,11 +1,10 @@
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/UserPage/Sidebar";
-import DeliveryForm from "../components/UserPage/DeliveryForm";
+import ParcelDetail from "../components/UserPage/ParcelDetail";
 import { useAuth } from "../contexts/AuthContext";
+import "./DetailPage.css";
 
-import "./DeliveryParcel.css";
-
-export default function DeliveryParcel() {
+export default function DetailPage() {
   const user = useAuth();
   return (
     <>
@@ -17,7 +16,7 @@ export default function DeliveryParcel() {
           <Sidebar user={user} />
         </div>
         <div className="rightside-box">
-          <DeliveryForm />
+          <ParcelDetail />
         </div>
       </div>
     </>
