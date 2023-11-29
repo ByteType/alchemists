@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   AiOutlineUser,
   AiOutlineMail,
@@ -6,10 +6,11 @@ import {
   AiOutlineHome,
 } from "react-icons/ai";
 import "./Form.css";
-import {useAuthDispatch} from "../../contexts/AuthContext";
+import { useAuthDispatch } from "../../contexts/AuthContext";
+import { ActionTypes } from "../../enum/ActionType";
 
 export default function Form() {
-  const [action, setAction] = useState("Sign Up");
+  const [action, setAction] = useState(ActionTypes.SIGN_UP);
   const [message, setMessage] = useState("");
   const dispatch = useAuthDispatch();
   const [userData, setUserData] = useState({
@@ -17,6 +18,7 @@ export default function Form() {
     email: "",
     password: "",
     address: "",
+    role: ["user"],
   });
 
   const handleChange = (event) => {
@@ -26,7 +28,7 @@ export default function Form() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (action === "Sign Up") {
+    if (action === ActionTypes.SIGN_UP) {
       try {
         const response = await fetch(
           "https://bytetype-cea685bb8e38.herokuapp.com/api/auth/signup",
@@ -41,8 +43,8 @@ export default function Form() {
         if (response.ok) {
           const result = await response.json();
           dispatch({
-            type: 'login',
-            payload: result
+            type: "login",
+            payload: result,
           });
           console.log(result);
           setMessage("Signup successful!");
@@ -52,7 +54,7 @@ export default function Form() {
       } catch (error) {
         console.error("Error:", error);
       }
-    } else if (action === "Login") {
+    } else if (action === ActionTypes.LOGIN) {
       try {
         const response = await fetch(
           "https://bytetype-cea685bb8e38.herokuapp.com/api/auth/signin",
@@ -71,10 +73,12 @@ export default function Form() {
         if (response.ok) {
           const result = await response.json();
           dispatch({
-            type: 'login',
-            payload: result
+            type: "login",
+            payload: result,
           });
           console.log(result);
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("authenticated", true);
           setMessage("Login successful!");
         } else {
           setMessage("Login failed");
@@ -104,7 +108,7 @@ export default function Form() {
               required
             />
           </div>
-          {action === "Login" ? (
+          {action === ActionTypes.LOGIN ? (
             <div></div>
           ) : (
             <div className="input">
@@ -130,7 +134,7 @@ export default function Form() {
               required
             />
           </div>
-          {action === "Login" ? (
+          {action === ActionTypes.LOGIN ? (
             <div></div>
           ) : (
             <div className="input">
@@ -148,10 +152,10 @@ export default function Form() {
         </div>
 
         <div className="switch-btn">
-          {action === "Sign Up"
+          {action === ActionTypes.SIGN_UP
             ? "Already have an account? "
             : "Not registered yet? "}
-          {action === "Sign Up" ? (
+          {action === ActionTypes.SIGN_UP ? (
             <span
               onClick={() => {
                 setAction("Login");

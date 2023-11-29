@@ -1,0 +1,22 @@
+.detail-form {
+  width: 800px;
+}
+
+.form-row {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-right,
+.top-left {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+@media (max-width: 880px) {
+  .top-right,
+  .top-left {
+    display: block;
+  }
+}
