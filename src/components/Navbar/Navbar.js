@@ -22,6 +22,11 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
+            <Link to="/alchemists/login" className="li-link">
+              LOGIN
+            </Link>
+          </li>
+          <li>
             <Link to="/alchemists/user/list">
               <AiOutlineUser
                 size={20}

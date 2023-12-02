@@ -2,7 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Ubuntu", "Poppins", sans-serif;
 }
 
 .sidebar-contaier {
@@ -44,5 +44,8 @@ li .li-link {
   .sidebar-contaier {
     width: 100%;
     height: 260px;
+  }
+  .sidebar {
+    width: 90%;
   }
 }
