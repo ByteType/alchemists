@@ -1,9 +1,6 @@
 .detail-form {
-  width: 80%;
-}
-
-.info-title {
-  margin-bottom: 15px;
+  width: 800px;
+  font-size: small;
 }
 
 .form-row {
@@ -12,22 +9,23 @@
   justify-content: space-between;
 }
 
-.form-top {
-  display: flex;
-  justify-content: space-between;
-}
-
 .top-right,
 .top-left {
   display: inline-block;
+  margin-right: 20px;
+}
+
+.back-btn {
+  font-size: small;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 15px;
+  cursor: pointer;
 }
 
 @media (max-width: 880px) {
   .top-right,
   .top-left {
     display: block;
-  }
-  .btn-box {
-    width: 50%;
   }
 }

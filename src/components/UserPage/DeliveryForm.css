@@ -2,8 +2,12 @@ label,
 input {
   margin-bottom: 15px;
 }
+.delivery-form-title {
+  margin-bottom: 10px;
+}
 .delivery-form {
   width: 800px;
+  font-size: small;
 }
 
 .form-row {
@@ -54,9 +58,10 @@ input::placeholder {
   color: white;
 }
 
-.locker-select {
-  margin: 100px 0;
+.locker-select select {
+  margin-bottom: 15px;
 }
+
 @media (max-width: 880px) {
   .top-right,
   .top-left {

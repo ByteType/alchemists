@@ -7,7 +7,8 @@ import {
 } from "react-icons/ai";
 import "./Form.css";
 import { useAuthDispatch } from "../../contexts/AuthContext";
-import { ActionTypes } from "../../enum/ActionTypes";
+import { ActionTypes } from "../../enum/ActionType";
+import { apiEndpoints } from "../../config/ApiEndpoints";
 
 export default function Form() {
   const [action, setAction] = useState(ActionTypes.SIGN_UP);
@@ -28,64 +29,32 @@ export default function Form() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (action === ActionTypes.SIGN_UP) {
-      try {
-        const response = await fetch(
-          "https://bytetype-cea685bb8e38.herokuapp.com/api/auth/signup",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userData),
-          }
-        );
-        if (response.ok) {
-          const result = await response.json();
-          dispatch({
-            type: "login",
-            payload: result,
-          });
-          console.log(result);
-          setMessage("Signup successful!");
-        } else {
-          setMessage("Signup failed");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
-    } else if (action === ActionTypes.LOGIN) {
-      try {
-        const response = await fetch(
-          "https://bytetype-cea685bb8e38.herokuapp.com/api/auth/signin",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              username: userData.username,
-              password: userData.password,
-            }),
-          }
-        );
+    const endpoint =
+      action === ActionTypes.SIGN_UP
+        ? apiEndpoints.SIGN_UP
+        : apiEndpoints.LOGIN;
+    const data =
+      action === ActionTypes.SIGN_UP
+        ? userData
+        : { username: userData.username, password: userData.password };
 
-        if (response.ok) {
-          const result = await response.json();
-          dispatch({
-            type: "login",
-            payload: result,
-          });
-          console.log(result);
-          localStorage.setItem("token", result.token);
-          localStorage.setItem("authenticated", true);
-          setMessage("Login successful!");
-        } else {
-          setMessage("Login failed");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      }
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) console.log(response.message);
+
+      const result = await response.json();
+      dispatch({ type: "login", payload: result });
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("authenticated", true);
+      setMessage(`${action} successful!`);
+    } catch (error) {
+      console.error("Error:", error);
+      setMessage(`${action} failed: ${error.message}`);
     }
   };
   return (

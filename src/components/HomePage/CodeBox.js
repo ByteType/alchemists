@@ -1,55 +1,126 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import LockerPicker from "../UserPage/LockerPicker";
+import { LockerActionTypes } from "../../enum/LockerActionType";
+import CodeInputFields from "./CodeInputFields";
+import { apiEndpoints } from "../../config/ApiEndpoints";
 import "./CodeBox.css";
 
 export default function CodeBox() {
   const itemsRef = useRef([]);
-  const [, setUserInput] = useState("");
-  const [action, setAction] = useState("Pick Up Parcel");
+  const [userInput, setUserInput] = useState("");
+  const [action, setAction] = useState(LockerActionTypes.PICK_UP);
+  const [selectedLocker, setSelectedLocker] = useState("");
+  const [message, setMessage] = useState("");
+  const [showCloseButton, setShowCloseButton] = useState(false);
 
-  const codeChangeHandler = (event) => {
-    const [, codeFieldIndex] = event.target.name.split("-");
-    let fieldIntIndex = parseInt(codeFieldIndex, 10);
-    setUserInput((prevState) => prevState + event.target.value);
+  useEffect(() => {
+    setMessage("");
+  }, [action]);
 
-    if (fieldIntIndex < 3) {
-      itemsRef.current[fieldIntIndex + 1].focus();
+  const handleLockerSelection = (selectedLockerValue) => {
+    setSelectedLocker(selectedLockerValue);
+  };
+
+  const verifyCode = async (event) => {
+    event.preventDefault();
+
+    if (userInput.length < 4) {
+      setMessage("Please enter a four-digit number!");
+      return;
+    }
+
+    setMessage("");
+
+    if (action === LockerActionTypes.Delivery) {
+      try {
+        const payload = {
+          lockerId: Number(selectedLocker),
+          deliveryCode: userInput,
+        };
+
+        const response = await fetch(apiEndpoints.LOCKER_DELIVERY, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const errorResponse = await response.json();
+          setMessage(errorResponse.message);
+          return;
+        }
+        const responseData = await response.json();
+        console.log(responseData);
+        setMessage(`DOOR ${responseData.cabinetId} OPEN FOR DELIVERY`);
+        setShowCloseButton(true);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else {
-      const field = document.querySelector(`Input[name=code-${fieldIntIndex}]`);
-      field.blur();
+      try {
+        const payload = {
+          lockerId: Number(selectedLocker),
+          pickedUpAt: new Date().toISOString(),
+          pickupCode: userInput,
+        };
+
+        const response = await fetch(apiEndpoints.LOCKER_PICKUP, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          const errorResponse = await response.json();
+          setMessage(errorResponse.message);
+          return;
+        }
+        const responseData = await response.json();
+        console.log(responseData);
+        setShowCloseButton(true);
+        setMessage(`DOOR ${responseData.cabinetId} OPEN FOR PICKUP`);
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
   };
-  const codeInputFields = new Array(4)
-    .fill(0)
-    .map((item, index) => (
-      <input
-        ref={(ref) => itemsRef.current.push(ref)}
-        name={`code-${index}`}
-        key={index}
-        onChange={(event) => codeChangeHandler(event)}
-        maxLength={1}
-      />
-    ));
+
+  const closeCabinetDoor = () => {
+    setShowCloseButton(false);
+    setMessage("Parcel operation completed successfully.");
+    setTimeout(() => setMessage(""), 3000);
+  };
+
   return (
     <div className="locker-container">
       <div className="locker">
         <h2>{action}</h2>
-        <div className="code-box">{codeInputFields}</div>
-        <label>
-          <span>Select a parcel locker: </span>
-          <select>
-            <option value="locker1">locker1</option>
-            <option value="locker2">locker2</option>
-            <option value="locker3">locker3</option>
-            <option value="locker4">locker4</option>
-            <option value="locker5">locker5</option>
-          </select>
-        </label>
+        {message ? <div className="message">{message}</div> : <div></div>}
+        <div className="code-box">
+          <CodeInputFields
+            userInput={userInput}
+            setUserInput={setUserInput}
+            itemsRef={itemsRef}
+          />
+        </div>
+        <LockerPicker
+          label="Choose a parcel locker for delivery"
+          onLockerChange={handleLockerSelection}
+          name="expectedSenderLockers"
+          value={selectedLocker}
+        />
+
         <div className="locker-status">
-          {action === "Pick Up Parcel" ? "For delivery? " : "For pick up? "}
-          {action === "Pick Up Parcel" ? (
+          {action === LockerActionTypes.PICK_UP
+            ? "For delivery? "
+            : "For pick up? "}
+          {action === LockerActionTypes.PICK_UP ? (
             <span
               onClick={() => {
-                setAction("Delivery parcel");
+                setAction(LockerActionTypes.Delivery);
               }}
             >
               Delivery now!
@@ -57,7 +128,7 @@ export default function CodeBox() {
           ) : (
             <span
               onClick={() => {
-                setAction("Pick Up Parcel");
+                setAction(LockerActionTypes.PICK_UP);
               }}
             >
               Pick up now!
@@ -66,7 +137,15 @@ export default function CodeBox() {
         </div>
 
         <div className="code-btn-box">
-          <button className="code-btn">OK</button>
+          <button className="code-btn" onClick={verifyCode}>
+            OK
+          </button>
+          <br />
+          {showCloseButton && (
+            <button className="close-door-btn" onClick={closeCabinetDoor}>
+              CLOSE CABINET DOOR
+            </button>
+          )}
         </div>
       </div>
     </div>

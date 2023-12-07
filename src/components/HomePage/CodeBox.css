@@ -52,6 +52,16 @@
   cursor: pointer;
 }
 
+.close-door-btn {
+  margin-top: 20px;
+  border: 1px solid #252525;
+  background-color: #252525;
+  color: #fff;
+  width: 260px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
 @media (max-width: 767px) {
   .code-box input {
     width: 30px;

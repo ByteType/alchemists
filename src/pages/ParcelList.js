@@ -1,9 +1,6 @@
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/UserPage/Sidebar";
 import ParcelCard from "../components/UserPage/ParcelCard";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
 import "./ParcelList.css";
 
 export default function ParcelList() {

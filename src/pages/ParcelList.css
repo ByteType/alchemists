@@ -7,8 +7,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  margin-top: 30px;
+  height: 100%;
 }
 .leftside-box {
   flex-basis: 220px;
