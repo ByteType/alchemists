@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://bytetype-cea685bb8e38.herokuapp.com/api";
+const API_BASE_URL = process.env.REACT_APP_API;
 
 export const apiEndpoints = {
   LOGIN: `${API_BASE_URL}/auth/signin`,

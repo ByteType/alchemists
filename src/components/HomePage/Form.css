@@ -47,6 +47,7 @@
   margin: auto;
   width: 70%;
   height: 50px;
+  line-height: 50px;
   background: #eaeaea;
   border-radius: 6px;
   font-size: 22px;
@@ -62,6 +63,7 @@
   background: transparent;
   border: none;
   outline: none;
+  margin: auto;
   color: #797979;
   font-size: 19px;
 }
