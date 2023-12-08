@@ -107,7 +107,7 @@ export default function CodeBox() {
           />
         </div>
         <LockerPicker
-          label="Choose a parcel locker for delivery"
+          label="Choose a parcel locker"
           onLockerChange={handleLockerSelection}
           name="expectedSenderLockers"
           value={selectedLocker}
@@ -119,14 +119,17 @@ export default function CodeBox() {
             : "For pick up? "}
           {action === LockerActionTypes.PICK_UP ? (
             <span
+              data-testid="toDeliveryButton"
               onClick={() => {
                 setAction(LockerActionTypes.Delivery);
               }}
+              className="to-delivery"
             >
               Delivery now!
             </span>
           ) : (
             <span
+              data-testid="toPickUpButton"
               onClick={() => {
                 setAction(LockerActionTypes.PICK_UP);
               }}

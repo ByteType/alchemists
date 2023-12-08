@@ -10,7 +10,7 @@ export default function Navbar() {
     <header>
       <nav className="navbar">
         <div className="logo-container">
-          <BsBoxSeam size={36} />
+          <BsBoxSeam size={36} data-testid="bsboxseam-icon" />
         </div>
         <ul
           className={Menu ? "nav-links-mobile" : "nav-links"}
@@ -29,6 +29,7 @@ export default function Navbar() {
           <li>
             <Link to="/alchemists/user/list">
               <AiOutlineUser
+                data-testid="user-icon"
                 size={20}
                 style={{ color: "black", verticalAlign: "middle" }}
               />
@@ -37,6 +38,7 @@ export default function Navbar() {
           <li>
             <Link to="/alchemists/driver">
               <BsTruck
+                data-testid="truck-icon"
                 size={20}
                 style={{ color: "black", verticalAlign: "middle" }}
               />

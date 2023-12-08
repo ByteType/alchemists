@@ -77,9 +77,7 @@ export default function Form() {
               required
             />
           </div>
-          {action === ActionTypes.LOGIN ? (
-            <div></div>
-          ) : (
+          {action === ActionTypes.SIGN_UP && (
             <div className="input">
               <AiOutlineMail className="form-icon" />
               <input
@@ -126,8 +124,9 @@ export default function Form() {
             : "Not registered yet? "}
           {action === ActionTypes.SIGN_UP ? (
             <span
+              data-testid="toLoginButton"
               onClick={() => {
-                setAction("Login");
+                setAction(ActionTypes.LOGIN);
                 setMessage("");
               }}
             >
@@ -135,8 +134,9 @@ export default function Form() {
             </span>
           ) : (
             <span
+              data-testid="toSignUpButton"
               onClick={() => {
-                setAction("Sign Up");
+                setAction(ActionTypes.SIGN_UP);
                 setMessage("");
               }}
             >
