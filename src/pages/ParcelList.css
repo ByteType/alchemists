@@ -1,0 +1,20 @@
+.list-container {
+  display: flex;
+}
+
+.rightside-box {
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.leftside-box {
+  flex-basis: 220px;
+  padding: 20px;
+}
+@media (max-width: 950px) {
+  .list-container {
+    display: block;
+  }
+}

@@ -1,0 +1,16 @@
+.home-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.code-container {
+  width: 50%;
+}
+
+@media (max-width: 600px) {
+  .code-container {
+    float: none;
+    width: 100%;
+  }
+}
