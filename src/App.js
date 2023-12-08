@@ -8,6 +8,7 @@ import Driver from "./pages/Driver.js";
 import { AuthProvider } from "./contexts/AuthContext";
 import DetailPage from "./pages/DetailPage.js";
 import PrivateRoute from "./PrivateRoute.js";
+
 function App() {
   return (
     <AuthProvider>
