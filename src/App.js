@@ -1,24 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.js";
+import LoginSignUp from "./pages/LoginSignUp.js";
+import DeliveryParcel from "./pages/DeliveryParcel.js";
+import ParcelList from "./pages/ParcelList.js";
+import Driver from "./pages/Driver.js";
+import { AuthProvider } from "./contexts/AuthContext";
+import DetailPage from "./pages/DetailPage.js";
+import PrivateRoute from "./PrivateRoute.js";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <div>
+        <Routes>
+          <Route path="/alchemists" element={<Home />} />
+
+          <Route path="/alchemists/login" element={<LoginSignUp />} />
+
+          <Route path="/alchemists/driver" element={<Driver />} />
+
+          <Route
+            path="/alchemists/user/delivery"
+            element={
+              <PrivateRoute>
+                <DeliveryParcel />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/alchemists/user/list"
+            element={
+              <PrivateRoute>
+                <ParcelList />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/alchemists/userId/:userId/list/:parcelId"
+            element={
+              <PrivateRoute>
+                <DetailPage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 

@@ -1,0 +1,73 @@
+label,
+input {
+  margin-bottom: 15px;
+}
+.delivery-form-title {
+  margin-bottom: 10px;
+}
+.delivery-form {
+  width: 800px;
+  font-size: small;
+}
+
+.form-row {
+  width: 320px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.top-right,
+.top-left {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.length,
+.width,
+.height {
+  width: 90px;
+}
+
+input::placeholder {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.mass {
+  width: 90px;
+  margin-left: 10px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center;
+}
+
+.form-btn {
+  width: 92px;
+  height: 28px;
+  border-radius: 5px;
+  margin: 15px;
+  font-size: 18px;
+  border: 1px solid #252525;
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  background-color: #252525;
+  color: white;
+}
+
+.locker-select select {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 880px) {
+  .top-right,
+  .top-left {
+    display: block;
+  }
+  .btn-box {
+    width: 50%;
+  }
+}
