@@ -8,6 +8,7 @@ import Cabinet from "../components/DriverPage/Cabinet";
 import Parcel from "../components/DriverPage/Parcel";
 import Detail from "../components/DriverPage/Detail";
 import styles from "./LockerPage.module.css"
+import {CabinetState} from "../enum/CabinetState";
 
 export default function LockerPage() {
   const [selectedLockerId, setSelectedLockerId] = useState(null);
@@ -54,7 +55,33 @@ export default function LockerPage() {
       if (response.ok) {
         setSelectedCabinets(prevState =>
           prevState.map(cabinet => selectedCabinetId === cabinet.id
-            ? { id: selectedCabinetId, type: "OPEN" } : cabinet));
+            ? { id: selectedCabinetId, type: CabinetState.PICKUP_PARCEL_EXIST }
+            : cabinet));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  async function handleParcelDistribute(parcelId) {
+    try {
+      const response = await fetch(apiEndpoints.DRIVER_DISTRIBUTE, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`
+        },
+        body: JSON.stringify({
+          id: parcelId,
+          cabinetId: selectedCabinetId
+        })
+      });
+
+      if (response.ok) {
+        setSelectedCabinets(prevState =>
+          prevState.map(cabinet => selectedCabinetId === cabinet.id
+            ? { id: selectedCabinetId, type: CabinetState.DISTRIBUTE_PARCEL_EXIST }
+            : cabinet));
       }
     } catch (error) {
       console.error("Error:", error);
@@ -83,9 +110,9 @@ export default function LockerPage() {
 
             <div className={!!selectedLockerId && !!selectedCabinetId ? `${styles.panel} ${styles.large}` : ""}>
               {!!selectedLockerId && !!selectedCabinetId &&
-                (selectedCabinetState === "OPEN"
+                (selectedCabinetState === CabinetState.OPEN
                   ? <Parcel location={selectedLockerLocation} onClick={handleParcelArrive} />
-                  : <Detail id={selectedCabinetId} />)
+                  : <Detail id={selectedCabinetId} status={selectedCabinetState} onClick={handleParcelDistribute} />)
               }
             </div>
           </div>

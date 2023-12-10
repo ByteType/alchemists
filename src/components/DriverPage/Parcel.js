@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { apiEndpoints } from "../../config/ApiEndpoints";
 import { useAuth } from "../../contexts/AuthContext";
-//import styles from "./Parcel.module.css";
+import styles from "./Parcel.module.css";
 
 export default function Parcel({ location, onClick }) {
   const [parcels, setParcels] = useState([]);
@@ -36,17 +36,27 @@ export default function Parcel({ location, onClick }) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {parcels.length > 0 ? (
         parcels.map(parcel => (
-          <div key={parcel.id}>
-            <div>Parcel ID: {parcel.id}</div>
-            {/* Add more parcel details here */}
-            <button onClick={() => onClick(parcel.id)}>Action</button>
+          <div key={parcel.id} className={styles.card}>
+            <div className={styles.section}>Parcel ID: {parcel.id}</div>
+            <div className={styles.section}>
+              <h3>Sender</h3>
+              <p>Username: {parcel.sender.username}</p>
+              <p>Address: {parcel.sender.address}</p>
+            </div>
+            <div className={styles.section}>
+              <h3>Recipient</h3>
+              <p>Username: {parcel.recipient.username}</p>
+              <p>Address: {parcel.recipient.address}</p>
+            </div>
+            <div className={styles.section}>Status: {parcel.status}</div>
+            <button className={styles.button} onClick={() => onClick(parcel.id)}>Arrive</button>
           </div>
         ))
       ) : (
-        <div>No parcels found for this location.</div>
+        <div>No required parcels found for this location.</div>
       )}
     </div>
   );

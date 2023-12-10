@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { apiEndpoints } from "../../config/ApiEndpoints";
 import { useAuth } from "../../contexts/AuthContext";
 import styles from "./Detail.module.css";
+import {CabinetState} from "../../enum/CabinetState";
 
-export default function Detail({ id }) {
+export default function Detail({ id, status, onClick }) {
   const [details, setDetails] = useState(null);
   const [error, setError] = useState(null);
   const user = useAuth();
@@ -21,7 +22,7 @@ export default function Detail({ id }) {
   }, [id, user]);
 
   if (!!error) {
-    return <div className="error">Error: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   return !!details && (
@@ -39,6 +40,9 @@ export default function Detail({ id }) {
       <div><strong>Picked Up At:</strong> {details.pickedUpAt}</div>
       <div><strong>Pickup Code:</strong> {details.pickupCode}</div>
       <div><strong>Delivery Code:</strong> {details.deliveryCode}</div>
+
+      {status === CabinetState.DISTRIBUTE_PARCEL_EXIST &&
+        <button className={styles.button} onClick={() => onClick(id)}>Distribute Parcel</button>}
     </div>
   );
 }

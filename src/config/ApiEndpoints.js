@@ -14,5 +14,6 @@ export const apiEndpoints = {
   DRIVER_LOCKER: `${API_BASE_URL}/lockers`,
   DRIVER_CABINET: `${API_BASE_URL}/cabinets`,
   DRIVER_SEARCH: `${API_BASE_URL}/parcels`,
-  DRIVER_ARRIVE: `${API_BASE_URL}/parcels/arrive`
+  DRIVER_ARRIVE: `${API_BASE_URL}/parcels/arrive`,
+  DRIVER_DISTRIBUTE: `${API_BASE_URL}/parcels/distribute`
 };
