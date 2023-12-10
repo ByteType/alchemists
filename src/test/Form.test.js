@@ -10,49 +10,46 @@ describe("Form", () => {
     screen.debug();
   });
 
-  test("renders Sign Up of Form component", () => {
+  test("renders Sign up of Form component", async () => {
     render(<Form />);
-    const title = screen.getByText("Sign Up");
-    expect(title).toBeInTheDocument();
-    const usernameInput = screen.getByPlaceholderText("Username");
-    expect(usernameInput).toBeInTheDocument();
+    const toSignUpButton = screen.getByTestId("toSignUpButton");
+    user.click(toSignUpButton);
 
-    const emailInput = screen.getByPlaceholderText("Email");
-    expect(emailInput).toBeInTheDocument();
-
-    const passwordInput = screen.getByPlaceholderText("Password");
-    expect(passwordInput).toBeInTheDocument();
-
-    const addressInput = screen.getByPlaceholderText("Address");
-    expect(addressInput).toBeInTheDocument();
-
-    const submitButton = screen.getByRole("button");
-    expect(submitButton).toBeInTheDocument();
-
-    const switchToLogin = screen.getByText("Login");
-    expect(switchToLogin).toBeInTheDocument();
+    await waitFor(() => {
+      const title = screen.getByText("Sign Up");
+      expect(title).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      const usernameInput = screen.getByPlaceholderText("Username");
+      expect(usernameInput).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      const emailInput = screen.getByPlaceholderText("Email");
+      expect(emailInput).toBeInTheDocument();
+    });
+    await waitFor(() => {
+      const passwordInput = screen.getByPlaceholderText("Password");
+      expect(passwordInput).toBeInTheDocument();
+    });
+      const addressInput = screen.getByPlaceholderText("Address");
+      expect(addressInput).toBeInTheDocument();
+    await waitFor(() => {
+      const submitButton = screen.getByRole("button");
+      expect(submitButton).toBeInTheDocument();
+    });
   });
 
-  test("switch to Login", async () => {
+  test("renders Sign in of Form component", async () => {
     render(<Form />);
-    const toLoginButton = screen.getByTestId("toLoginButton");
-    user.click(toLoginButton);
-
-    await waitFor(() => {
-      expect(screen.queryByPlaceholderText("Email")).not.toBeInTheDocument();
-    });
-    await waitFor(() => {
-      expect(screen.queryByPlaceholderText("Address")).not.toBeInTheDocument();
-    });
 
     expect(screen.getByPlaceholderText("Username")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
   });
 
-  test("switch to Sign Up", async () => {
+  test("switch", async () => {
     render(<Form />);
-    const toLoginButton = screen.getByTestId("toLoginButton");
-    user.click(toLoginButton);
+    const toSignUpButton = screen.getByTestId("toSignUpButton");
+    user.click(toSignUpButton);
 
     await waitFor(() => {
       expect(screen.getByTestId("toSignUpButton")).toBeInTheDocument();

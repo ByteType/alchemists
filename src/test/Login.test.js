@@ -18,7 +18,10 @@ it("submits the form and handles the response correctly", async () => {
       ok: true,
       json: () =>
         Promise.resolve({
-          /// USER DATA
+          id: 5,
+          username: "test",
+          email: "test@test.com",
+          roles: ["ROLE_USER"],
           token: "fake-token",
         }),
     })

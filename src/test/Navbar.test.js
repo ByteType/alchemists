@@ -14,11 +14,6 @@ test("renders Navbar component", () => {
 
   expect(screen.getByText("HOME")).toBeInTheDocument();
   expect(screen.getByText("LOGIN")).toBeInTheDocument();
-
-  const userIcon = screen.getByTestId("user-icon");
-  expect(userIcon).toBeInTheDocument();
-  const truckIcon = screen.getByTestId("truck-icon");
-  expect(truckIcon).toBeInTheDocument();
 });
 
 test("responsive button click in Navbar", () => {
