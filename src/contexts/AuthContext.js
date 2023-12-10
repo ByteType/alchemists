@@ -16,13 +16,26 @@ export function AuthProvider({ children }) {
   const [user, dispatch] = useReducer((user, action) => {
     switch (action.type) {
       case "login":
-        return action.payload;
+        localStorage.setItem("id", action.payload.id);
+        localStorage.setItem("username", action.payload.username);
+        localStorage.setItem("roles", action.payload.roles.join(","))
+        localStorage.setItem("token", action.payload.token);
+        return { ...action.payload };
       case "logout":
-        return null;
+        localStorage.removeItem("id");
+        localStorage.removeItem("username");
+        localStorage.removeItem("roles")
+        localStorage.removeItem("token");
+        return { };
       default:
         return user;
     }
-  }, null);
+  }, {
+    id: localStorage.getItem("id"),
+    username: localStorage.getItem("username"),
+    roles: localStorage.getItem("roles")?.split(","),
+    token: localStorage.getItem("token")
+  });
 
   return (
     <AuthContext.Provider value={user}>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import LockerPicker from "./LockerPicker";
 import { apiEndpoints } from "../../config/ApiEndpoints";
+import { useAuth } from "../../contexts/AuthContext";
 import "./DeliveryForm.css";
 
 export default function DeliveryForm() {
+  const user = useAuth();
   const [parcelData, setParcelData] = useState({
     sender: { username: "", phone: "", address: "" },
     recipient: { username: "", phone: "", address: "" },
@@ -15,7 +17,7 @@ export default function DeliveryForm() {
     expectedRecipientLockers: [],
   });
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     const { name, value } = event.target;
 
     if (
@@ -26,9 +28,9 @@ export default function DeliveryForm() {
     } else {
       setParcelData({ ...parcelData, [name]: value });
     }
-  };
+  }
 
-  const handleSenderChange = (event) => {
+  function handleSenderChange(event) {
     const { name, value } = event.target;
     setParcelData((prevState) => ({
       ...prevState,
@@ -37,8 +39,9 @@ export default function DeliveryForm() {
         [name]: value,
       },
     }));
-  };
-  const handleRecipientChange = (event) => {
+  }
+
+  function handleRecipientChange(event) {
     const { name, value } = event.target;
     setParcelData((prevState) => ({
       ...prevState,
@@ -47,12 +50,10 @@ export default function DeliveryForm() {
         [name]: value,
       },
     }));
-  };
+  }
 
-  console.log(JSON.stringify(parcelData));
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
-    const token = localStorage.getItem("token");
 
     const payload = {
       sender: parcelData.sender,
@@ -70,7 +71,7 @@ export default function DeliveryForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${user.token}`
         },
         body: JSON.stringify(payload),
       });
@@ -83,10 +84,11 @@ export default function DeliveryForm() {
     } catch (error) {
       console.error("Error:", error);
     }
-  };
-  const handleLockerChange = (lockerValue, lockerName) => {
+  }
+
+  function handleLockerChange(lockerValue, lockerName) {
     setParcelData({ ...parcelData, [lockerName]: [lockerValue] });
-  };
+  }
 
   return (
     <>

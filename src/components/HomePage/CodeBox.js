@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import LockerPicker from "../UserPage/LockerPicker";
+import React, { useState, useRef } from "react";
+import { apiEndpoints } from "../../config/ApiEndpoints";
 import { LockerActionTypes } from "../../enum/LockerActionType";
 import CodeInputFields from "./CodeInputFields";
-import { apiEndpoints } from "../../config/ApiEndpoints";
+import LockerPicker from "../UserPage/LockerPicker";
 import "./CodeBox.css";
 
 export default function CodeBox() {
@@ -13,15 +13,7 @@ export default function CodeBox() {
   const [message, setMessage] = useState("");
   const [showCloseButton, setShowCloseButton] = useState(false);
 
-  useEffect(() => {
-    setMessage("");
-  }, [action]);
-
-  const handleLockerSelection = (selectedLockerValue) => {
-    setSelectedLocker(selectedLockerValue);
-  };
-
-  const verifyCode = async (event) => {
+  async function verifyCode(event) {
     event.preventDefault();
 
     if (userInput.length < 4) {
@@ -86,7 +78,7 @@ export default function CodeBox() {
         console.error("Error:", error);
       }
     }
-  };
+  }
 
   const closeCabinetDoor = () => {
     setShowCloseButton(false);
@@ -98,7 +90,7 @@ export default function CodeBox() {
     <div className="locker-container">
       <div className="locker">
         <h2>{action}</h2>
-        {message ? <div className="message">{message}</div> : <div></div>}
+        {!!message && <div className="message">{message}</div>}
         <div className="code-box">
           <CodeInputFields
             userInput={userInput}
@@ -108,35 +100,31 @@ export default function CodeBox() {
         </div>
         <LockerPicker
           label="Choose a parcel locker"
-          onLockerChange={handleLockerSelection}
+          onLockerChange={setSelectedLocker}
           name="expectedSenderLockers"
           value={selectedLocker}
         />
 
         <div className="locker-status">
+          {action === LockerActionTypes.PICK_UP ? "For delivery? " : "For pick up? "}
           {action === LockerActionTypes.PICK_UP
-            ? "For delivery? "
-            : "For pick up? "}
-          {action === LockerActionTypes.PICK_UP ? (
-            <span
-              data-testid="toDeliveryButton"
-              onClick={() => {
-                setAction(LockerActionTypes.Delivery);
-              }}
-              className="to-delivery"
-            >
-              Delivery now!
-            </span>
-          ) : (
-            <span
-              data-testid="toPickUpButton"
-              onClick={() => {
-                setAction(LockerActionTypes.PICK_UP);
-              }}
-            >
-              Pick up now!
-            </span>
-          )}
+            ? (
+              <span
+                data-testid="toDeliveryButton"
+                onClick={() => setAction(LockerActionTypes.Delivery)}
+                className="to-delivery"
+              >
+                Delivery now!
+              </span>
+            ) : (
+              <span
+                data-testid="toPickUpButton"
+                onClick={() => setAction(LockerActionTypes.PICK_UP)}
+              >
+                Pick up now!
+              </span>
+            )
+          }
         </div>
 
         <div className="code-btn-box">

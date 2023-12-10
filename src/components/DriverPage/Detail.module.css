@@ -1,0 +1,7 @@
+.detail-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 10px;
+    transition: transform 0.3s ease-in-out;
+}
