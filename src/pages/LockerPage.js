@@ -80,7 +80,7 @@ export default function LockerPage() {
       if (response.ok) {
         setSelectedCabinets(prevState =>
           prevState.map(cabinet => selectedCabinetId === cabinet.id
-            ? { id: selectedCabinetId, type: CabinetState.DISTRIBUTE_PARCEL_EXIST }
+            ? { id: selectedCabinetId, type: CabinetState.OPEN }
             : cabinet));
       }
     } catch (error) {
