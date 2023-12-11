@@ -62,10 +62,10 @@ Design:
 
 ### UI Plan
 
-Home page: The home page is the locker simulation page. Users can select the locker they want to interact with and enter the shipping code or pickup code to simulate the locker function.
-Login page: Users can register as a member through this page, and then log in to the website to obtain permission to send packages and track the status of packages.
++ Home page: The home page is the locker simulation page. Users can select the locker they want to interact with and enter the shipping code or pickup code to simulate the locker function.
++ Login page: Users can register as a member through this page, and then log in to the website to obtain permission to send packages and track the status of packages.
 Details page: Displays detailed information about the package, such as sender and recipient information, package status, package time data, etc.
-User panel: The user panel is divided into sending packages and package information list functions. Users can create their own delivery package through the delivery form in the user panel, and view all package information in their account in the package information list.
++ User panel: The user panel is divided into sending packages and package information list functions. Users can create their own delivery package through the delivery form in the user panel, and view all package information in their account in the package information list.
 
 ## Installation and Usage
 
