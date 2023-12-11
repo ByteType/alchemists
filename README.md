@@ -33,16 +33,16 @@ Locker system: simulates a physical automatic locker that stores packages. Packa
 ### Backend Plan
 
 Core Components
-1.User Management Service
+1. User Management Service
   + Manages Consumer and Driver user accounts.
   + Key endpoints include user registration, authentication, and deletion.
-2.Parcel Management Service
+2. Parcel Management Service
   + Handles parcel information, history, and statuses.
   + Provides endpoints for fetching user parcel history, creating new parcels, and updating parcel information.
-3.Locker Management Service
+3. Locker Management Service
   + Manages parcel lockers and their cabinets.
   + Endpoints allow for fetching locker information, free cabinets, and opening cabinets.
-4.Notification Service
+4. Notification Service
   + Sends email notifications to users.
   + Includes an endpoint for sending email notifications.
 5.Parcel Generator Robot
