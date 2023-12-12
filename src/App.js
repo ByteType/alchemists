@@ -14,12 +14,12 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/alchemists" element={<Home />}/>
+        <Route path="/" element={<Home />}/>
 
-        <Route path="/alchemists/login" element={<LoginSignUp />}/>
+        <Route path="/login" element={<LoginSignUp />}/>
 
         <Route
-          path="/alchemists/user/delivery"
+          path="/user/delivery"
           element={
             <PrivateRoute>
               <DeliveryParcel />
@@ -28,7 +28,7 @@ function App() {
         />
 
         <Route
-          path="/alchemists/user/list"
+          path="/user/list"
           element={
             <PrivateRoute>
               <ParcelList />
@@ -37,7 +37,7 @@ function App() {
         />
 
         <Route
-          path="/alchemists/userId/:userId/list/:parcelId"
+          path="/userId/:userId/list/:parcelId"
           element={
             <PrivateRoute>
               <DetailPage />
@@ -46,7 +46,7 @@ function App() {
         />
 
         <Route
-          path="/alchemists/driver/lockers"
+          path="/driver/lockers"
           element={
             <PrivateRoute>
               <LockerPage />
@@ -55,7 +55,7 @@ function App() {
         />
 
         <Route
-          path="/alchemists/driver/generate"
+          path="/driver/generate"
           element={
             <PrivateRoute>
               <Generate />
