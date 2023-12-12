@@ -34,19 +34,13 @@ export default function Detail({ id, status, onClick }) {
       <h2>Cabinet Details</h2>
       <div><strong>ID:</strong> {details.id}</div>
       <div><strong>Type:</strong> {details.type}</div>
-      <div><strong>Parcel ID:</strong> {details.parcelId}</div>
-      <div><strong>Sender:</strong> {details.sender?.username}</div>
-      <div><strong>Recipient:</strong> {details.recipient?.username}</div>
-      <div><strong>Dimensions:</strong> {`${details.width} x ${details.height} x ${details.depth}`}</div>
-      <div><strong>Mass:</strong> {details.mass}</div>
-      <div><strong>Status:</strong> {details.status}</div>
-      <div><strong>Ready For Pickup At:</strong> {details.readyForPickupAt}</div>
-      <div><strong>Picked Up At:</strong> {details.pickedUpAt}</div>
-      <div><strong>Pickup Code:</strong> {details.pickupCode}</div>
-      <div><strong>Delivery Code:</strong> {details.deliveryCode}</div>
+      <div><strong>Parcel ID:</strong> {details.parcel?.id}</div>
+      <div><strong>Sender:</strong> {details.parcel?.sender?.username}</div>
+      <div><strong>Recipient:</strong> {details.parcel?.recipient?.username}</div>
+      <div><strong>Status:</strong> {details.parcel?.status}</div>
 
       {status === CabinetState.DISTRIBUTE_PARCEL_EXIST &&
-        <button className={styles.button} onClick={() => onClick(id)}>Distribute Parcel</button>}
+        <button className={styles.button} onClick={() => onClick(details.parcel?.id)}>Distribute Parcel</button>}
     </div>
   );
 }
