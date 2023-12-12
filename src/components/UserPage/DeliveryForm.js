@@ -75,12 +75,13 @@ export default function DeliveryForm() {
         },
         body: JSON.stringify(payload),
       });
-      if (!response.ok) {
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log(responseData);
+        alert("Delivery successful!");
+      } else {
         console.log(response.json());
       }
-      const responseData = await response.json();
-      console.log(responseData);
-      alert("Delivery successful!");
     } catch (error) {
       console.error("Error:", error);
     }

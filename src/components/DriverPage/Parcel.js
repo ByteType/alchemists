@@ -14,8 +14,12 @@ export default function Parcel({ location, onClick }) {
 
     fetch(`${apiEndpoints.DRIVER_SEARCH}?location=${location}`, { headers })
       .then(response => {
-        if (!response.ok) setError(`HTTP error! Status: ${response.status}`);
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        } else {
+          setError(`HTTP error! Status: ${response.status}`);
+          return [];
+        }
       })
       .then(data => setParcels(data))
       .catch(error => console.error('There was an error fetching the parcels!', error))

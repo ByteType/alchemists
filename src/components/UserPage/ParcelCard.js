@@ -16,12 +16,7 @@ export default function ParcelCard() {
       const url = `${apiEndpoints.USER_INFO}/user/${user.id}`;
 
       fetch(url, { headers })
-        .then((response) => {
-          if (!response.ok) {
-            console.log(response.json());
-          }
-          return response.json();
-        })
+        .then((response) => response.ok ? response.json() : [])
         .then((data) => setParcelData(data.parcels))
         .catch((err) => {
           console.log(err.message);

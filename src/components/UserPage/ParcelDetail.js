@@ -18,12 +18,7 @@ export default function ParcelDetail() {
     const headers = { Authorization: `Bearer ${user.token}` };
 
     fetch(`${apiEndpoints.PARCEL_DETAIL}/parcels/${parcel.id}`, { headers })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.json());
-        }
-        return response.json();
-      })
+      .then((response) => response.ok ? response.json() : {})
       .then((data) => setParcelData(data))
       .catch((err) => {
         console.error("Error fetching parcel data:", err.message);

@@ -38,15 +38,15 @@ export default function CodeBox() {
           body: JSON.stringify(payload),
         });
 
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          setMessage(`DOOR ${responseData.cabinetId} OPEN FOR DELIVERY`);
+          setShowCloseButton(true);
+        } else {
           const errorResponse = await response.json();
           setMessage(errorResponse.message);
-          return;
         }
-        const responseData = await response.json();
-        console.log(responseData);
-        setMessage(`DOOR ${responseData.cabinetId} OPEN FOR DELIVERY`);
-        setShowCloseButton(true);
       } catch (error) {
         console.error("Error:", error);
       }
@@ -65,15 +65,15 @@ export default function CodeBox() {
           },
           body: JSON.stringify(payload),
         });
-        if (!response.ok) {
+        if (response.ok) {
+          const responseData = await response.json();
+          console.log(responseData);
+          setShowCloseButton(true);
+          setMessage(`DOOR ${responseData.cabinetId} OPEN FOR PICKUP`);
+        } else {
           const errorResponse = await response.json();
           setMessage(errorResponse.message);
-          return;
         }
-        const responseData = await response.json();
-        console.log(responseData);
-        setShowCloseButton(true);
-        setMessage(`DOOR ${responseData.cabinetId} OPEN FOR PICKUP`);
       } catch (error) {
         console.error("Error:", error);
       }
