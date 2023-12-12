@@ -5,9 +5,9 @@ This project aims to develop an interactive web application that simulates the o
 ## Detailed Description
 
 The project focuses on the creation of a web-based application that is designed to provide a comprehensive representation of the entire process of a courier system, covering the entire process of a package from dispatch to receipt. The application is divided into three main parts:
-User System: This interface allows customers to send, track package status and record package data.
-Driver System: This part of the application is designed to help delivery personnel manage package deliveries, including package status updates and locker allocations.
-Locker system: simulates a physical automatic locker that stores packages. Packages can be stored or taken out of the locker by entering a pickup code or delivery code.
++ User System: This interface allows customers to send, track package status and record package data.
++ Driver System: This part of the application is designed to help delivery personnel manage package deliveries, including package status updates and locker allocations.
++ Locker system: simulates a physical automatic locker that stores packages. Packages can be stored or taken out of the locker by entering a pickup code or delivery code.
 
 ## Technology Stack
 
