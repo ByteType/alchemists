@@ -94,7 +94,7 @@ Test plan link: https://oamk-my.sharepoint.com/:w:/g/personal/t1zhyi00_students_
 ### Testing and Debugging
 + Linux Testing:For testing on Linux, use the provided bash script.[script location](https://github.com/ByteType/amanises/blob/master/automation)
 + Windows Testing: For debugging on Windows, consider using the provided JavaScript script.
-  **Notice:**  On Windows, ensure to include decode to avoid sending escape characters which may result in failed transmissions.
+**Notice:**  On Windows, ensure to include decode to avoid sending escape characters which may result in failed transmissions.
 ```javascript
 #!/usr/bin/env node
 
