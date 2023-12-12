@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    overflow-x: auto;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.panel {
+    flex: 1;
+    transition: flex-grow 0.5s ease;
+    overflow: hidden;
+}
+
+.panel.small {
+    flex-grow: 1;
+}
+
+.panel.large {
+    flex-grow: 2;
+}

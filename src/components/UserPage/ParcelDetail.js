@@ -1,15 +1,13 @@
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import { CodeTitles } from "../../enum/CodeTitle";
 import { apiEndpoints } from "../../config/ApiEndpoints";
 import { useAuth } from "../../contexts/AuthContext";
-import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import "./ParcelDetail.css";
 
 export default function ParcelDetail() {
   const parcel = useLocation().state;
-  const token = localStorage.getItem("token");
   const [parcelData, setParcelData] = useState({});
   const [codeTitle, setCodeTitle] = useState("");
   const [code, setCode] = useState("");
@@ -17,24 +15,15 @@ export default function ParcelDetail() {
   const user = useAuth();
 
   useEffect(() => {
-    const headers = {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    };
+    const headers = { Authorization: `Bearer ${user.token}` };
 
-    const url = `${apiEndpoints.PARCEL_DETAIL}/parcels/${parcel.id}`;
-    fetch(url, { method: "GET", headers })
-      .then((response) => {
-        if (!response.ok) {
-          console.log(response.json());
-        }
-        return response.json();
-      })
+    fetch(`${apiEndpoints.PARCEL_DETAIL}/parcels/${parcel.id}`, { headers })
+      .then((response) => response.ok ? response.json() : {})
       .then((data) => setParcelData(data))
       .catch((err) => {
         console.error("Error fetching parcel data:", err.message);
       });
-  }, [parcel, token]);
+  }, [user, navigate, parcel]);
 
   useEffect(() => {
     if (user?.id === parcel.sender?.id) {
@@ -50,7 +39,7 @@ export default function ParcelDetail() {
     <>
       <button
         className="back-btn"
-        onClick={() => navigate("/alchemists/user/list")}
+        onClick={() => navigate("/user/list")}
       >
         <FaArrowLeft />
         &nbsp;back
@@ -76,7 +65,7 @@ export default function ParcelDetail() {
             </div>
             <div className="form-row">
               <div className="info-title">{codeTitle}</div>
-              <span>{code ? { code } : "****"}</span>
+              <span>{code ? code : "****"}</span>
             </div>
           </div>
           <div className="top-right">

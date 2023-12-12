@@ -1,0 +1,15 @@
+.locker-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.locker {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}

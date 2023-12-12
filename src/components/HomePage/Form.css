@@ -47,7 +47,6 @@
   margin: auto;
   width: 70%;
   height: 50px;
-  line-height: 50px;
   background: #eaeaea;
   border-radius: 6px;
   font-size: 22px;
@@ -58,7 +57,7 @@
 }
 
 .input input {
-  height: 50px;
+  height: 100%;
   width: 300px;
   background: transparent;
   border: none;

@@ -1,26 +1,30 @@
-import { useEffect, useState } from "react";
-import "./ParcelCard.css";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoIosNotificationsOutline } from "react-icons/io";
 import { apiEndpoints } from "../../config/ApiEndpoints";
 import { useAuth } from "../../contexts/AuthContext";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import "./ParcelCard.css";
 
 export default function ParcelCard() {
-  const token = localStorage.getItem("token");
-  const user = useAuth();
   const [parcelData, setParcelData] = useState([]);
   const navigate = useNavigate();
+  const user = useAuth();
+
   useEffect(() => {
-    const headers = { Authorization: `Bearer ${token}` };
-    const url = `${apiEndpoints.USER_INFO}/user/${user?.id}`;
-    fetch(url, { headers })
-      .then((response) => response.json())
-      .then((data) => setParcelData(data.parcels))
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [user.id, token, user]);
-  console.log(parcelData);
+    if (!!user?.token && !!user?.id) {
+      const headers = {Authorization: `Bearer ${user.token}`};
+      const url = `${apiEndpoints.USER_INFO}/user/${user.id}`;
+
+      fetch(url, { headers })
+        .then((response) => response.ok ? response.json() : [])
+        .then((data) => setParcelData(data.parcels))
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } else {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -31,9 +35,7 @@ export default function ParcelCard() {
             <div
               className="cards"
               onClick={() =>
-                navigate(`/alchemists/userId/${user.id}/list/${index}`, {
-                  state: value,
-                })
+                navigate(`/userId/${user.id}/list/${index}`, { state: value })
               }
               key={index}
             >

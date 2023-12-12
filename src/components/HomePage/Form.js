@@ -1,38 +1,27 @@
 import React, { useState } from "react";
-import {
-  AiOutlineUser,
-  AiOutlineMail,
-  AiOutlineLock,
-  AiOutlineHome,
-} from "react-icons/ai";
-import "./Form.css";
-import { useAuthDispatch } from "../../contexts/AuthContext";
+import { AiOutlineHome, AiOutlineLock, AiOutlineMail, AiOutlineUser } from "react-icons/ai";
 import { ActionTypes } from "../../enum/ActionType";
 import { apiEndpoints } from "../../config/ApiEndpoints";
+import { useAuthDispatch } from "../../contexts/AuthContext";
+import "./Form.css";
 
 export default function Form() {
-  const [action, setAction] = useState(ActionTypes.SIGN_UP);
+  const [action, setAction] = useState(ActionTypes.LOGIN);
   const [message, setMessage] = useState("");
+  const [userData, setUserData] = useState({ role: ["user"] });
   const dispatch = useAuthDispatch();
-  const [userData, setUserData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    address: "",
-    role: ["user"],
-  });
 
-  const handleChange = (event) => {
+  function handleChange(event) {
     setUserData({ ...userData, [event.target.name]: event.target.value });
-  };
+  }
 
-  const handleSubmit = async (event) => {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const endpoint =
       action === ActionTypes.SIGN_UP
         ? apiEndpoints.SIGN_UP
-        : apiEndpoints.LOGIN;
+        : apiEndpoints.SIGN_IN;
     const data =
       action === ActionTypes.SIGN_UP
         ? userData
@@ -45,25 +34,26 @@ export default function Form() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) console.log(response.message);
-
-      const result = await response.json();
-      dispatch({ type: "login", payload: result });
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("authenticated", true);
-      setMessage(`${action} successful!`);
+      if (response.ok) {
+        const result = await response.json();
+        dispatch({ type: "login", payload: result });
+        setMessage(`${action} successful!`);
+      } else {
+        setMessage(`${action} failed: ${response.message}`);
+      }
     } catch (error) {
       console.error("Error:", error);
       setMessage(`${action} failed: ${error.message}`);
     }
-  };
+  }
+
   return (
     <div className="container">
       <div className="header">
         <div className="text">{action}</div>
         <div className="underline"></div>
       </div>
-      {message ? <div className="message">{message}</div> : <div></div>}
+      {!!message && <div className="message">{message}</div>}
       <form onSubmit={handleSubmit}>
         <div className="inputs">
           <div className="input">
@@ -101,9 +91,7 @@ export default function Form() {
               required
             />
           </div>
-          {action === ActionTypes.LOGIN ? (
-            <div></div>
-          ) : (
+          {action === ActionTypes.SIGN_UP && (
             <div className="input">
               <AiOutlineHome className="form-icon" />
               <input

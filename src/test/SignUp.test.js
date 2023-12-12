@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import Form from "../components/HomePage/Form";
 import { AuthProvider } from "../contexts/AuthContext";
+import user from "@testing-library/user-event";
 
 // Mock the fetch API
 global.fetch = jest.fn();
@@ -12,7 +13,13 @@ it("submits the sign up form and handles the response correctly", async () => {
   fetch.mockImplementation(() =>
     Promise.resolve({
       ok: true,
-      json: () => Promise.resolve({ token: "fake-token" }),
+      json: () => Promise.resolve({
+        id: 5,
+        username: "test",
+        email: "test@test.com",
+        roles: ["ROLE_USER"],
+        token: "fake-token"
+      }),
     })
   );
 
@@ -22,6 +29,8 @@ it("submits the sign up form and handles the response correctly", async () => {
       <Form />
     </AuthProvider>
   );
+  const toSignUpButton = screen.getByTestId("toSignUpButton");
+  user.click(toSignUpButton);
 
   // Simulate user input
   fireEvent.change(screen.getByPlaceholderText("Username"), {
