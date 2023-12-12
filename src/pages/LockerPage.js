@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { CabinetState } from "../enum/CabinetState";
 import { apiEndpoints } from "../config/ApiEndpoints";
 import { useAuth } from "../contexts/AuthContext";
 import Navbar from "../components/Navbar/Navbar";
@@ -8,7 +9,6 @@ import Cabinet from "../components/DriverPage/Cabinet";
 import Parcel from "../components/DriverPage/Parcel";
 import Detail from "../components/DriverPage/Detail";
 import styles from "./LockerPage.module.css"
-import {CabinetState} from "../enum/CabinetState";
 
 export default function LockerPage() {
   const [selectedLockerId, setSelectedLockerId] = useState(null);

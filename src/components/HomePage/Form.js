@@ -1,8 +1,8 @@
-import React, {useState} from "react";
-import {AiOutlineHome, AiOutlineLock, AiOutlineMail, AiOutlineUser} from "react-icons/ai";
-import {ActionTypes} from "../../enum/ActionType";
-import {apiEndpoints} from "../../config/ApiEndpoints";
-import {useAuthDispatch} from "../../contexts/AuthContext";
+import React, { useState } from "react";
+import { AiOutlineHome, AiOutlineLock, AiOutlineMail, AiOutlineUser } from "react-icons/ai";
+import { ActionTypes } from "../../enum/ActionType";
+import { apiEndpoints } from "../../config/ApiEndpoints";
+import { useAuthDispatch } from "../../contexts/AuthContext";
 import "./Form.css";
 
 export default function Form() {
@@ -34,11 +34,13 @@ export default function Form() {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok) console.log(response.message);
-
-      const result = await response.json();
-      dispatch({ type: "login", payload: result });
-      setMessage(`${action} successful!`);
+      if (response.ok) {
+        const result = await response.json();
+        dispatch({ type: "login", payload: result });
+        setMessage(`${action} successful!`);
+      } else {
+        setMessage(`${action} failed: ${response.message}`);
+      }
     } catch (error) {
       console.error("Error:", error);
       setMessage(`${action} failed: ${error.message}`);
