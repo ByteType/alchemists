@@ -44,7 +44,7 @@ export default function ParcelDetail() {
     <>
       <button
         className="back-btn"
-        onClick={() => navigate("/alchemists/user/list")}
+        onClick={() => navigate("/user/list")}
       >
         <FaArrowLeft />
         &nbsp;back

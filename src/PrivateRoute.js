@@ -6,7 +6,7 @@ function PrivateRoute({ children }) {
 
   return !!user.id && !!user.username && !!user.roles && !!user.token
     ? children
-    : <Navigate to="/alchemists/login" />;
+    : <Navigate to="/login" />;
 }
 
 export default PrivateRoute;

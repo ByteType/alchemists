@@ -27,7 +27,7 @@ export default function ParcelCard() {
           console.log(err.message);
         });
     } else {
-      navigate("/alchemists/login");
+      navigate("/login");
     }
   }, [user, navigate]);
 
@@ -40,7 +40,7 @@ export default function ParcelCard() {
             <div
               className="cards"
               onClick={() =>
-                navigate(`/alchemists/userId/${user.id}/list/${index}`, { state: value })
+                navigate(`/userId/${user.id}/list/${index}`, { state: value })
               }
               key={index}
             >

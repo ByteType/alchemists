@@ -20,7 +20,7 @@ export default function Sidebar() {
 
       if (response.ok) {
         dispatch({ type: "logout" });
-        navigate("/alchemists");
+        navigate("/");
         alert("Logout success!");
         window.location.reload();
       }
@@ -40,7 +40,7 @@ export default function Sidebar() {
 
       if (response.ok) {
         dispatch({ type: "logout" });
-        navigate("/alchemists");
+        navigate("/");
         alert("User account removed successfully");
         window.location.reload();
       } else {
