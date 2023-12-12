@@ -4,6 +4,7 @@ This project aims to develop an interactive web application that simulates the o
 
 [demo.webm](https://github.com/ByteType/alchemists/assets/88884784/c748d830-29a6-4f55-91c0-20ff5536676b)
 
+Full video with explanation: [Download Video](https://github.com/ByteType/.github/blob/master/demo.mp4)
 
 ## Detailed Description
 
