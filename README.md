@@ -79,6 +79,11 @@ Accessing Remotely:
 
 + Visit our live application at ByteType Web Application: https://bytetype.github.io/alchemists/
 
+
+## Test Plan
+
+Test plan link: https://oamk-my.sharepoint.com/:w:/g/personal/t1zhyi00_students_oamk_fi/EfVieZBaI9xFikNflA3ikgwBtKZkg4hSDsJo3onSJQ0o7Q?e=nEyKmy
+
 ## Automated Parcel Sending
 
 ### Daily Automation
@@ -206,8 +211,4 @@ void async function main() {
   
   
 
- 
 
-## Test Plan
-
-Test plan link: https://oamk-my.sharepoint.com/:w:/g/personal/t1zhyi00_students_oamk_fi/EfVieZBaI9xFikNflA3ikgwBtKZkg4hSDsJo3onSJQ0o7Q?e=nEyKmy
