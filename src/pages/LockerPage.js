@@ -57,6 +57,8 @@ export default function LockerPage() {
           prevState.map(cabinet => selectedCabinetId === cabinet.id
             ? { id: selectedCabinetId, type: CabinetState.PICKUP_PARCEL_EXIST }
             : cabinet));
+      } else {
+        console.error("Error" + await response.json())
       }
     } catch (error) {
       console.error("Error:", error);
@@ -82,6 +84,8 @@ export default function LockerPage() {
           prevState.map(cabinet => selectedCabinetId === cabinet.id
             ? { id: selectedCabinetId, type: CabinetState.OPEN }
             : cabinet));
+      } else {
+        console.error("Error" + await response.json())
       }
     } catch (error) {
       console.error("Error:", error);
