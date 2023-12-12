@@ -50,11 +50,11 @@ Core Components
 
 Design:
 
-1.Authentication Logic
+1. Authentication Logic
   + Implements JWT or session-based authentication for secure user sessions.
-2.Parcel Creation & Allocation Logic
+2. Parcel Creation & Allocation Logic
   + Allocates new parcels to free cabinets in selected lockers.
-3.Cabinet Opening Logic
+3. Cabinet Opening Logic
   + Validates codes and opens the corresponding cabinet for parcel pickup or delivery.
 
 **Notice**: for more information, refer to our documentation on Application Architecture & Database Structure.(https://bytetype.github.io/document)
@@ -94,6 +94,7 @@ Test plan link: https://oamk-my.sharepoint.com/:w:/g/personal/t1zhyi00_students_
 ### Testing and Debugging
 + Linux Testing:For testing on Linux, use the provided bash script.[script location](https://github.com/ByteType/amanises/blob/master/automation)
 + Windows Testing: For debugging on Windows, consider using the provided JavaScript script.
+
 **Notice:**  On Windows, ensure to include decode to avoid sending escape characters which may result in failed transmissions.
 ```javascript
 #!/usr/bin/env node
