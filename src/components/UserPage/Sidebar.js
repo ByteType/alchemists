@@ -66,12 +66,12 @@ export default function Sidebar() {
                   : "username"}
               </li>
               <li className="sidebar-items sidebar-btn">
-                <Link to="/alchemists/user/delivery" className="li-link">
+                <Link to="/user/delivery" className="li-link">
                   Delivery parcel
                 </Link>
               </li>
               <li className="sidebar-items sidebar-btn">
-                <Link to="/alchemists/user/list" className="li-link">
+                <Link to="/user/list" className="li-link">
                   Parcel list
                 </Link>
               </li>

@@ -20,18 +20,18 @@ export default function Navbar() {
           onClick={() => setMenu(false)}
         >
           <li>
-            <Link to="/alchemists" className="li-link">
+            <Link to="/" className="li-link">
               HOME
             </Link>
           </li>
           <li>
-            <Link to="/alchemists/login" className="li-link">
+            <Link to="/login" className="li-link">
               LOGIN
             </Link>
           </li>
           {(user?.roles ?? []).includes("ROLE_USER") ?
             <li>
-              <Link to="/alchemists/user/list">
+              <Link to="/user/list">
                 <AiOutlineUser
                   data-testid="user-icon"
                   size={20}
@@ -42,7 +42,7 @@ export default function Navbar() {
             : null}
           {(user?.roles ?? []).includes("ROLE_DRIVER") ?
             <li>
-              <Link to="/alchemists/driver/lockers">
+              <Link to="/driver/lockers">
                 <BsTruck
                   data-testid="truck-icon"
                   size={20}

@@ -19,7 +19,7 @@ export default function Sidebar() {
 
       if (response.ok) {
         dispatch({type: "logout"});
-        navigate("/alchemists");
+        navigate("/");
         alert("Logout success!");
         window.location.reload();
       }
@@ -42,12 +42,12 @@ export default function Sidebar() {
                   : "username"}
               </li>
               <li className="sidebar-items sidebar-btn">
-                <Link to="/alchemists/driver/lockers" className="li-link">
+                <Link to="/driver/lockers" className="li-link">
                   Lockers
                 </Link>
               </li>
               <li className="sidebar-items sidebar-btn">
-                <Link to="/alchemists/driver/generate" className="li-link">
+                <Link to="/driver/generate" className="li-link">
                   Generate
                 </Link>
               </li>
