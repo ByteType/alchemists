@@ -79,6 +79,135 @@ Accessing Remotely:
 
 + Visit our live application at ByteType Web Application: https://bytetype.github.io/alchemists/
 
+## Automated Parcel Sending
+
+### Daily Automation
+**Frequency:** The robot is programmed to automatically send documents at 12:00 every day.
+### Forced Updates
+**Manual Triggering:** If a forced update is required, it can be initiated through a specific command.
+
+### Testing and Debugging
++ Linux Testing:For testing on Linux, use the provided bash script.[script location](https://github.com/ByteType/amanises/blob/master/automation)
++ Windows Testing: For debugging on Windows, consider using the provided JavaScript script.
+  **Notice:**  On Windows, ensure to include decode to avoid sending escape characters which may result in failed transmissions.
+```javascript
+#!/usr/bin/env node
+
+const BASE_URL = "https://bytetype-cf63a368b847.herokuapp.com/api";
+const AUTH_URL = `${BASE_URL}/auth`;
+const USER_URL = `${BASE_URL}/user`;
+const PARCEL_URL = `${BASE_URL}/parcels`;
+const LOCKER_URL = `${BASE_URL}/lockers`;
+const CABINET_URL = `${BASE_URL}/cabinets`;
+
+async function login(username, password) {
+    const response = await fetch(`${AUTH_URL}/signin`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ username, password }),
+    });
+
+    if (!response.ok) throw new Error(`Login failed: ${response.statusText}`);
+
+    return response.json();
+}
+
+async function getUsers(token) {
+    const response = await fetch(`${USER_URL}/all?role=ROLE_USER`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+
+    if (!response.ok) throw new Error(`Get users failed: ${response.statusText}`);
+
+    return response.json();
+}
+
+async function getCabinets(token){
+    const response = await fetch(`${CABINET_URL}/free`, {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        }
+    });
+
+    if (!response.ok) throw new Error(`Get cabinets failed: ${response.statusText}`);
+
+    return response.json();
+}
+
+async function getLockers() {
+    const response = await fetch(`${LOCKER_URL}/all`, {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+
+    if (!response.ok) throw new Error(`Get lockers failed: ${response.statusText}`);
+
+    return response.json();
+}
+
+async function createParcel(token, parcelData) {
+    const response = await fetch(PARCEL_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(parcelData),
+    });
+
+    if (!response.ok) throw new Error(`Parcel creation failed: ${response.statusText}`);
+
+    return response.json();
+}
+
+function shuffleArray(array){
+    for (let i = array.length - 1; i > 0; i--) {
+        const rand = Math.floor(Math.random() * (i + 1));
+        [array[i], array[rand]] = [array[rand], array[i]]
+    }
+    return array;
+}
+
+void async function main() {
+    try {
+        const { id, token } = await login("Robot", "Password");
+
+        const users = await getUsers(token), cabinets = await getCabinets(token), lockers = await getLockers();
+        const lucky = shuffleArray(users.filter(({ id: userId }) => userId !== id)).slice(0, 3);
+        const data = Array.from(Array(Math.min(lucky.length, cabinets.length)), (_, i) => {
+            return [lucky[i], cabinets[i], lockers[Math.floor(Math.random() * lockers.length)]];
+        });
+
+        for (const [user, cabinet, locker] of data) {
+            const parcel = await createParcel(token, {
+                sender: { id },
+                recipient: { id: user.id },
+                width: (1 + Math.random()) * 10,
+                height: (1 + Math.random()) * 10,
+                depth: (1 + Math.random()) * 10,
+                mass: (1 + Math.random()) * 10,
+                readyForPickupAt: new Date(),
+                expectedSenderLockers: [cabinet.lockerId],
+                expectedRecipientLockers: [locker.id],
+            });
+            console.log(`Send parcel to lucky user: ${user.username}, parcel: ${parcel.id}, cabinet: ${cabinet.id}`);
+        }
+    } catch (error) {
+        console.error("An error occurred:", error);
+    }
+}();
+  
+  
+
+ 
+
 ## Test Plan
 
 Test plan link: https://oamk-my.sharepoint.com/:w:/g/personal/t1zhyi00_students_oamk_fi/EfVieZBaI9xFikNflA3ikgwBtKZkg4hSDsJo3onSJQ0o7Q?e=nEyKmy
