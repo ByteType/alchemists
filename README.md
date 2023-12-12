@@ -82,9 +82,9 @@ Accessing Remotely:
 
 ## Test Plan
 
-<object data="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf">Download PDF</a>.</p>
+<object data="https://raw.githubusercontent.com/ByteType/document/master/static/TestPlan.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://raw.githubusercontent.com/ByteType/document/master/static/TestPlan.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://raw.githubusercontent.com/ByteType/document/master/static/TestPlan.pdf">Download PDF</a>.</p>
     </embed>
 </object>
 
