@@ -2,6 +2,9 @@
 
 This project aims to develop an interactive web application that simulates the operations of an automated package delivery point/locker system. The application consists of a user system, a driver system, and a locker system. The application will be designed to demonstrate the complete workflow of an express delivery system, encompassing all stages from sending to receiving packages.
 
+[demo.webm](https://github.com/ByteType/alchemists/assets/88884784/c748d830-29a6-4f55-91c0-20ff5536676b)
+
+
 ## Detailed Description
 
 The project focuses on the creation of a web-based application that is designed to provide a comprehensive representation of the entire process of a courier system, covering the entire process of a package from dispatch to receipt. The application is divided into three main parts:
