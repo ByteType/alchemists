@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/alchemists/static/css/main.2323c9fc.css",
-    "main.js": "/alchemists/static/js/main.6a889093.js",
-    "static/js/787.c75eca17.chunk.js": "/alchemists/static/js/787.c75eca17.chunk.js",
+    "main.css": "/alchemists/static/css/main.a606601b.css",
+    "main.js": "/alchemists/static/js/main.55c5ff57.js",
+    "static/js/787.30d68c37.chunk.js": "/alchemists/static/js/787.30d68c37.chunk.js",
     "index.html": "/alchemists/index.html",
-    "main.2323c9fc.css.map": "/alchemists/static/css/main.2323c9fc.css.map",
-    "main.6a889093.js.map": "/alchemists/static/js/main.6a889093.js.map",
-    "787.c75eca17.chunk.js.map": "/alchemists/static/js/787.c75eca17.chunk.js.map"
+    "main.a606601b.css.map": "/alchemists/static/css/main.a606601b.css.map",
+    "main.55c5ff57.js.map": "/alchemists/static/js/main.55c5ff57.js.map",
+    "787.30d68c37.chunk.js.map": "/alchemists/static/js/787.30d68c37.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2323c9fc.css",
-    "static/js/main.6a889093.js"
+    "static/css/main.a606601b.css",
+    "static/js/main.55c5ff57.js"
   ]
 }
