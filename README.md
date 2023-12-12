@@ -18,12 +18,12 @@ The project focuses on the creation of a web-based application that is designed 
 
 ## Team Contributions
 
-- Xier Peng:
+- [@GPU-Fried-Eggs](https://github.com/GPU-Fried-Eggs)(* Peng):
     - Developed the driver page UI.
     - Crafted Auth, User, Parcel, and Locker APIs.
     - Conducted API integration tests.
 
-- Yingzhi Zhang:
+- [@Yingzhiemily](https://github.com/Yingzhiemily)(* Zhang):
     - Designed the User, Locker, and form page UI.
     - Integrated User, Locker, and form pages with the back-end API.
     - Participated in React testing.
@@ -72,23 +72,29 @@ Details page: Displays detailed information about the package, such as sender an
 Local Setup:
 
 + Clone or download both front-end and back-end repositories.
-+ Launch back-end with gradlew bootDevelopRun.
-+ Initiate front-end with npm start.
++ Launch back-end with ```gradlew bootDevelopRun```.
++ Initiate front-end with ```npm start```.
 
 Accessing Remotely:
 
-+ Visit our live application at ByteType Web Application: https://bytetype.github.io/alchemists/
++ Visit our live application at ByteType Web Application: https://bytetype.github.io/alchemists/#
 
 
 ## Test Plan
 
-Backend Testing:
+<object data="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/ByteType/document/blob/master/static/TestPlan.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+### Backend Test:
 
 * Description: The backend apis is test by JUnit with utilization of Spring Boot for comprehensive API testing and use OpenAPI for monitoring API status.
 
 * Launch test with ```gradlew test```
 
-Frontend testing:
+### Frontend test:
 
 * Description: Test by Jest and react test library. This process includes the utilization of mock fetch data to simulate real-world scenarios and assess component functionality accurately.
 
@@ -98,9 +104,16 @@ Frontend testing:
 
 ### Daily Automation
 **Frequency:** The robot is programmed to automatically send documents at 12:00 every day.
+
 ### Forced Updates
-**Manual Triggering:** If a forced update is required, it can be initiated through a specific command.
+**Manual Triggering:** If a forced update is required, it can be executed through a specific command:
+```bash
+heroku run -a bytetype bash automation
+```
 
 ### Testing and Debugging
-+ Linux Testing:For testing on Linux, use the provided bash script.[script location](https://github.com/ByteType/amanises/blob/master/automation)
-+ Windows Testing: For debugging on Windows, consider using the provided JavaScript script.
+For testing purpose download the [script](https://github.com/ByteType/amanises/blob/master/automation).
+run the command in linux environment:
+```bash
+bash automation
+```
