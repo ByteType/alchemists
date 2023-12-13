@@ -11,8 +11,7 @@ beforeEach(() => {
   fetch.mockClear();
 });
 
-it("submits the form and handles the response correctly", async () => {
-  // Set up the mock implementation for fetch
+test("submits the Login form and handles the response correctly", async () => {
   fetch.mockImplementation(() =>
     Promise.resolve({
       ok: true,
@@ -27,7 +26,6 @@ it("submits the form and handles the response correctly", async () => {
     })
   );
 
-  // Render the component with the mock dispatch
   render(
     <AuthProvider>
       <Form />
@@ -42,17 +40,14 @@ it("submits the form and handles the response correctly", async () => {
     target: { value: "password" },
   });
 
-  // Simulate form submission
   fireEvent.click(screen.getByText("Submit"));
 
-  // Wait for the async actions to complete
+  // Wait for the async actions
   await waitFor(() => {
-    // Check if fetch was called correctly
     expect(fetch).toHaveBeenCalledWith(expect.any(String), expect.any(Object));
   });
 
   await waitFor(() => {
-    // Check for successful message display
     expect(screen.getByText(/successful!/i)).toBeInTheDocument();
   });
 });

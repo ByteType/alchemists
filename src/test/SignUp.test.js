@@ -5,25 +5,23 @@ import Form from "../components/HomePage/Form";
 import { AuthProvider } from "../contexts/AuthContext";
 import user from "@testing-library/user-event";
 
-// Mock the fetch API
 global.fetch = jest.fn();
 
-it("submits the sign up form and handles the response correctly", async () => {
-  // Set up the mock implementation for fetch
+test("sign up form", async () => {
   fetch.mockImplementation(() =>
     Promise.resolve({
       ok: true,
-      json: () => Promise.resolve({
-        id: 5,
-        username: "test",
-        email: "test@test.com",
-        roles: ["ROLE_USER"],
-        token: "fake-token"
-      }),
+      json: () =>
+        Promise.resolve({
+          id: 5,
+          username: "test",
+          email: "test@test.com",
+          roles: ["ROLE_USER"],
+          token: "fake-token",
+        }),
     })
   );
 
-  // Render the component
   render(
     <AuthProvider>
       <Form />
@@ -32,7 +30,10 @@ it("submits the sign up form and handles the response correctly", async () => {
   const toSignUpButton = screen.getByTestId("toSignUpButton");
   user.click(toSignUpButton);
 
-  // Simulate user input
+  await waitFor(() => {
+    expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
+  });
+
   fireEvent.change(screen.getByPlaceholderText("Username"), {
     target: { value: "testuser" },
   });
@@ -46,12 +47,9 @@ it("submits the sign up form and handles the response correctly", async () => {
     target: { value: "testaddress" },
   });
 
-  // Simulate form submission
   fireEvent.click(screen.getByText("Submit"));
 
-  // Wait for the async actions to complete
   await waitFor(() => {
-    // Check if fetch was called correctly
     expect(fetch).toHaveBeenCalledWith(expect.any(String), expect.any(Object));
   });
 
