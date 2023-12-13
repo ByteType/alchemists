@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import user from "@testing-library/user-event";
 import Form from "../components/HomePage/Form";
@@ -31,8 +31,8 @@ describe("Form", () => {
       const passwordInput = screen.getByPlaceholderText("Password");
       expect(passwordInput).toBeInTheDocument();
     });
-      const addressInput = screen.getByPlaceholderText("Address");
-      expect(addressInput).toBeInTheDocument();
+    const addressInput = screen.getByPlaceholderText("Address");
+    expect(addressInput).toBeInTheDocument();
     await waitFor(() => {
       const submitButton = screen.getByRole("button");
       expect(submitButton).toBeInTheDocument();
